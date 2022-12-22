@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.BoardDTO;
+import com.example.demo.dto.PageRequestDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +25,23 @@ public class BoardServiceTests {
 //        log.info("bno: "+ bno);
 //    }
 
+//    @Test
+//    public void testModify(){
+//        BoardDTO boardDTO = BoardDTO.builder()
+//                .bno(101L)
+//                .title("updated....101")
+//                .content("updated....101")
+//                .writer("updated....user101")
+//                .build();
+//        boardService.register(boardDTO);
+//    }
     @Test
-    public void testModify(){
-        BoardDTO boardDTO = BoardDTO.builder()
-                .bno(101L)
-                .title("updated....101")
-                .content("updated....101")
-                .writer("updated....user101")
+    public void testList(){
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .type("tcw")
+                .keyword("1")
+                .page(1)
+                .size(10)
                 .build();
-        boardService.register(boardDTO);
     }
 }

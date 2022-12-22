@@ -54,14 +54,15 @@ public class BoardServiceImpl implements BoardService{
         boardRepository.deleteById(bno);
     }
 
-    @Override
-    public PageResponseDTO<BoardDTO> list(PageRequestDTO pageRequestDTO) {
-        String[] types = pageRequestDTO.getTypes();
-        String keyword = pageRequestDTO.getKeyword();
-        Pageable pageable = pageRequestDTO.getPageable("bno");
-
-        return null;
-    }
+//    @Override
+//    public PageResponseDTO<BoardDTO> list(PageRequestDTO pageRequestDTO) {
+//        String[] types = pageRequestDTO.getTypes();
+//        String keyword = pageRequestDTO.getKeyword();
+//        Pageable pageable = pageRequestDTO.getPageable("bno");
+//
+//        Page<Board> result = boardRepository.searchAll(types,keyword,pageable);
+//        return null;
+//    }
 
     @Override
     public PageResponseDTO<BoardDTO> list(PageRequestDTO pageRequestDTO){
@@ -72,7 +73,7 @@ public class BoardServiceImpl implements BoardService{
         Page<Board> result = boardRepository.searchAll(types, keyword, pageable);
         List<BoardDTO> dtoList = result.getContent().stream()
                 .map(board -> modelMapper.map(board,BoardDTO.class)).collect(Collectors.toList());
-        return PageRequestDTO.<BoardDTO>withAll()
+        return PageResponseDTO.<BoardDTO>withAll()
                 .pageRequestDTO(pageRequestDTO)
                 .dtoList(dtoList)
                 .total((int)result.getTotalElements())
