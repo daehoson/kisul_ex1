@@ -25,4 +25,9 @@ public class SampleController {
 		List<String> list = (Arrays.asList(arr));
 		model.addAttribute("list",list);
 	}
+
+	@GetMapping("/ex/ex3")
+	public void ex3(Model model){
+		model.addAttribute("arr", new String[]{"AAA","BBB","CCC"});
+	}
 }
