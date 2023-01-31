@@ -6,6 +6,7 @@ import com.example.demo.dto.PageResponseDTO;
 import com.example.demo.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,5 +23,10 @@ public class BoardController {
         PageResponseDTO<BoardDTO> responseDTO = boardService.list(pageRequestDTO);
         log.info(responseDTO);
         model.addAttribute("responseDTO", responseDTO);
+    }
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/register")
+    public void registerGET(){
+
     }
 }
